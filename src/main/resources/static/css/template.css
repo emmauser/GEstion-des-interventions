@@ -1,0 +1,27 @@
+/*=====================================
+   Other
+======================================*/
+i.bi-trash{
+    color: tomato;
+}
+
+/*=====================================
+    Dashboard center
+======================================*/
+.card-box{
+    min-height: 200px;
+    background-color: #e7f1ff;
+    padding: 15px 25px;
+}
+.card-box .title{
+    font-size: 2.2rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 100;
+}
+
+/*=====================================
+    Modal
+======================================*/
+.modal-body form div.col-lg-12{
+    padding: 8px;
+}

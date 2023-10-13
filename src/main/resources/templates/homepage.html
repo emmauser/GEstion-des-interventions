@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="fr-FR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gestion des interventions</title>
+        <meta content="" name="description">
+        <meta content="" name="keywords"> 
+
+        <link href="/img/favicon.jpg" rel="icon">
+        <link href="/img/favicon.jpg" rel="apple-touch-icon">
+
+        <link href="https://fonts.gstatic.com" rel="preconnect">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+        <link href="/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+        <link href="/vendor/quill/quill.snow.css" rel="stylesheet">
+        <link href="/vendor/quill/quill.bubble.css" rel="stylesheet">
+        <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
+        <link href="/vendor/simple-datatables/style.css" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="stylesheet" href="/css/template.css">
+
+    </head>
+
+    <body>
+        <header id="header" class="header fixed-top d-flex align-items-center" style="display: flex; flex-direction: row;">
+            <div class="d-flex align-items-center justify-content-between" style="width: 20%;">
+                <a href="/accueil" class="d-flex">
+                    <img src="/img/logo_isj.png" alt="" style="width: 200px;">
+
+                </a>
+                <i class="bi bi-list toggle-sidebar-btn my-2"></i>
+            </div>
+            <div class="search-bar mx-3">
+                <form class="search-form d-flex align-items-center" method="POST" action="#">
+                  <input type="text" name="query" placeholder="Rechercher" title="Enter search keyword">
+                  <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+                </form>
+            </div>
+            <nav class="header-nav ms-auto">
+                <ul class="d-flex align-items-center">
+          
+                    <li class="nav-item d-block d-lg-none">
+                        <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <i class="bi bi-search"></i>
+                        </a>
+                    </li><!-- End Search Icon-->
+            
+                    <li class="nav-item dropdown">
+            
+                        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-bell"></i>
+                        <span class="badge bg-primary badge-number">1</span>
+                        </a><!-- End Notification Icon -->
+            
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                        <li class="dropdown-header">
+                            Vous avez 1 notifications
+                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">Voir tout</span></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+            
+                        <li class="notification-item">
+                            <i class="bi bi-exclamation-circle text-warning"></i>
+                            <div>
+                            <h4>Lorem Ipsum</h4>
+                            <p>Quae dolorem earum veritatis oditseno</p>
+                            <p>30 min. ago</p>
+                            </div>
+                        </li>
+            
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="dropdown-footer">
+                            <a href="#">Voire toutes les notifications</a>
+                        </li>
+            
+                        </ul><!-- End Notification Dropdown Items -->
+            
+                    </li><!-- End Notification Nav -->
+            
+                    <li class="nav-item dropdown">
+            
+                        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-chat-left-text"></i>
+                        <span class="badge bg-success badge-number">2</span>
+                        </a><!-- End Messages Icon -->
+            
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+                        <li class="dropdown-header">
+                            Vous avez 3 nouveaux messages
+                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+            
+                        <li class="message-item">
+                            <a href="#">
+                            <img src="/img/profiles.jpeg" alt="" class="rounded-circle">
+                            <div>
+                                <h4>Maria Hudson</h4>
+                                <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                <p>Il y'a 4 hrs.</p>
+                            </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+            
+                        <li class="message-item">
+                            <a href="#">
+                            <img src="/img/profiles.jpeg" alt="" class="rounded-circle">
+                            <div>
+                                <h4>Anna Nelson</h4>
+                                <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                <p>Il y'a 6 hrs.</p>
+                            </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+            
+                        <li class="dropdown-footer">
+                            <a href="#">Voir tous les messages</a>
+                        </li>
+            
+                        </ul><!-- End Messages Dropdown Items -->
+            
+                    </li><!-- End Messages Nav -->
+            
+                    <li class="nav-item dropdown pe-3">
+            
+                        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <img src="/img/profiles.jpeg" alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2" th:text="${#authentication.name}"></span>
+                        </a><!-- End Profile Iamge Icon -->
+            
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6 th:text="${#authentication.name}"></h6>
+
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+            
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                            <i class="bi bi-person"></i>
+                            <span>Mon Profil</span>
+                            </a>
+                        </li>
+
+            
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="/logout">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Déconnecter</span>
+                            </a>
+                        </li>
+            
+                        </ul><!-- End Profile Dropdown Items -->
+                    </li><!-- End Profile Nav -->
+                </ul>
+            </nav>
+        </header>
+
+
+        <!-- ======= Sidebar ======= -->
+        <aside id="sidebar" class="sidebar">
+
+            <ul class="sidebar-nav" id="sidebar-nav">
+
+                <li class="nav-item">
+                    <a class="nav-link " href="/accueil">
+                        <i class="bi bi-grid"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li><!-- End Dashboard Nav -->
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-book"></i><span>Interventions</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li sec:authorize="hasAnyAuthority('Personnel', 'Admin')">
+                            <a href="/listI" >
+                                <i class="bi bi-circle"></i><span>Liste des interventions</span>
+                            </a>
+                        </li>
+                        <li sec:authorize="hasAuthority('Etudiant')">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#addInt">
+                                <i class="bi bi-circle"></i><span>Créer une intervention</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li><!-- End Components Nav -->
+
+                <li sec:authorize="hasAuthority('Admin')" class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-person"></i><span>Etudiants</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a href="/listE">
+                                <i class="bi bi-circle"></i><span>Liste des étudiants</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#addEtud">
+                                <i class="bi bi-circle"></i><span>Ajouter un étudiant</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li><!-- End Forms Nav --> <!-- Refer to student nav -->
+
+                <li sec:authorize="hasAuthority('Admin')" class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-mortarboard"></i><span>Personnel</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a href="/listU">
+                                <i class="bi bi-circle"></i><span>Liste des membres</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#addPerso">
+                                <i class="bi bi-circle"></i><span>Ajouter un membre</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li> <!-- Refer to teacher nav -->
+
+            </ul>
+
+        </aside><!-- End Sidebar-->
+
+        <main id="main" class="main">
+
+            <div class="pagetitle">
+                <h1>Dashboard</h1>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/accueil">Acceuil</a></li>
+                        <li class="breadcrumb-item active">Dashboard</li>
+                    </ol>
+                </nav>
+            </div><!-- End Page Title -->
+
+            <section class="section dashboard">
+                <div class="row">
+
+                    <!-- First section to salutation -->
+                    <div class="col-lg-12 card-box row">
+                        <p class="title col-lg-12">Bienvenue <strong th:text="${#authentication.name}"></strong></p>
+                    </div>
+                    <!-- Left side columns -->
+                    <div class="col-lg-8">
+                        <div class="row">
+
+                        </div>
+                    </div><!-- End Left side columns -->
+
+                    <!-- Right side columns -->
+                    <div class="col-lg-4">
+
+                    </div><!-- End Right side columns -->
+
+                </div>
+            </section>
+            <div sec:authorize="hasAuthority('Admin')" class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Graphique des interventions par département</h3>
+
+                        <!-- Bar Chart -->
+                        <canvas id="barChart"></canvas>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", () => {
+                                new Chart(document.querySelector('#barChart'), {
+                                    type: 'bar',
+                                    data: {
+                                        labels: ['Direction', 'Scolarité', 'Pédagogie', 'Ingénieurs Supports', 'Administration', 'Secretariat'],
+                                        datasets: [{
+                                            label: 'Interventions',
+                                            data: [65, 59, 80, 81, 56, 55],
+                                            backgroundColor: [
+                                                'rgba(255, 99, 132, 0.2)',
+                                                'rgba(255, 159, 64, 0.2)',
+                                                'rgba(255, 205, 86, 0.2)',
+                                                'rgba(75, 192, 192, 0.2)',
+                                                'rgba(54, 162, 235, 0.2)',
+                                                'rgba(153, 102, 255, 0.2)'
+                                            ],
+                                            borderColor: [
+                                                'rgb(255, 99, 132)',
+                                                'rgb(255, 159, 64)',
+                                                'rgb(255, 205, 86)',
+                                                'rgb(75, 192, 192)',
+                                                'rgb(54, 162, 235)',
+                                                'rgb(153, 102, 255)'
+                                            ],
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+                                });
+                            });
+                        </script>
+                        <!-- End Bar CHart -->
+
+                    </div>
+                </div>
+            </div>
+
+        </main><!-- End #main -->
+
+        <div class="modal fade" id="addEtud" tabindex="-1" aria-labelledby="addEtud" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title">Ajout d'un étudiant</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form method="post" role="form" th:action="@{/saveE}" th:object="${etudiant}" class="row justify-content-center">
+
+                            <div class="col-lg-12 row flex-column">
+                                <label for="mail" class="form-label">Entrer l'adresse mail</label>
+                                <input type="email" th:field="*{mail_etud}" name="mail" id="mail" class="form-control">
+                            </div>
+                            <div class="col-lg-12 row flex-column">
+                                <label for="matricule" class="form-label">Entrer le matricule</label>
+                                <input type="text" th:field="*{matricule}" name="matricule" id="matricule" class="form-control">
+                            </div>
+                            <div class="col-lg-12 row flex-column">
+                                <label for="codeauth" class="form-label">Entrer le code d'authentification</label>
+                                <input type="text" th:field="*{code_authentification}" name="code_auth" id="codeauth" class="form-control">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                <button type="submit" class="btn btn-primary">Ajouter</button>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+        </div><!-- End Modal for addEtud -->
+
+        <!-- Modal for addPerso -->
+        <div class="modal fade" id="addPerso" tabindex="-1" aria-labelledby="addPerso" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Ajout d'un membre administratif</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form method="post" role="form" th:action="@{/saveU}" th:object="${utilisateur}" class="row justify-content-center">
+                            <div class="col-lg-12 row flex-column">
+                                <label for="mail" class="form-label">Entrer l'email</label>
+                                <input type="email" th:field="*{mail_user}" name="mail" id="mail" class="form-control" required>
+                            </div>
+                            <div class="col-lg-12 row flex-column">
+                                <label for="nom" class="form-label">Entrer le nom</label>
+                                <input type="text" th:field="*{nom}" name="nom" id="nom" class="form-control" required>
+                            </div>
+                            <div class="col-lg-12 row flex-column">
+                                <label for="prenom" class="form-label">Entrer le prenom</label>
+                                <input type="text" th:field="*{prenom}" name="nom" id="prenom" class="form-control" required>
+                            </div>
+                            <div class="col-lg-12 row flex-column">
+                                <label for="login" class="form-label">Entrer le login</label>
+                                <input type="text" th:field="*{login}" name="matricule" id="login" class="form-control" required>
+                            </div>
+                            <div class="col-lg-12 row flex-column">
+                                <label for="password" class="form-label">Entrer le mot de passe</label>
+                                <input type="password" th:field="*{mot_de_passe}" name="password" id="password" class="form-control" required>
+                            </div>
+                            <div class="col-lg-12 row flex-column">
+                                <label for="tel" class="form-label">Entrer le numéro de téléphone</label>
+                                <input type="tel" th:field="*{telephone}" name="tel" id="tel" class="form-control" required>
+                            </div>
+                            <div class="col-lg-12 row flex-column">
+                                <label for="sexe" class="form-label">Sélectionner le sexe</label>
+                                <select name="sexe" th:field="*{sexe}" id="sexe" class="form-select" required>
+                                    <option value="MASCULIN">Masculin</option>
+                                    <option value="FEMININ">Féminin</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-12 row flex-column">
+                                <label for="daten" class="form-label">Entrer le date de naissance</label>
+                                <input type="date" th:field="*{date_naissance}" name="matricule" id="daten" class="form-control" required>
+                            </div>
+                            <div class="col-lg-12 row flex-column">
+                                <label for="dept" class="form-label">Sélectionner un département</label>
+                                <select name="dept" th:field="*{departement}" id="dept" class="form-select" required>
+                                    <option value=102752>Direction</option>
+                                    <option value=102753>Scolarité</option>
+                                    <option value=102754>Pedagogie</option>
+                                    <option value=102755>Ingenieurs Supports</option>
+                                    <option value=103102>Administration</option>
+                                    <option value=157467>Secretariat</option>
+                                </select>
+                            </div>
+
+                            <div class="col-lg-12 row flex-column">
+                                <label for="role" class="form-label">Sélectionner un rôle</label>
+                                <select name="role" th:field="*{roles}" id="role" class="form-select" required>
+                                    <option value="Personnel">Personnel</option>
+                                    <option value="Admin">Administrateur</option>
+                                </select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                <button type="submit" class="btn btn-primary">Ajouter</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="addInt" tabindex="-1" aria-labelledby="addInt" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-title">Créer une intervention</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" role="form" th:action="@{/saveI}" th:object="${intervention}" class="row justify-content-center">
+
+                            <div class="col-lg-12 row flex-column">
+                                <label for="objet" class="form-label">Entrer l'objet de l'intervention</label>
+                                <input type="text" th:field="*{intitule}" name="objet" id="objet" class="form-control" required>
+                            </div>
+                            <div class="col-lg-12 row flex-column">
+                                <label for="description" class="form-label">Entrer la description</label>
+                                <!-- <input type="text" name="matricule" id="intitule" class="form-control"> -->
+                                <textarea name="description" th:field="*{details}" id="description" cols="20" rows="10" required></textarea>
+                            </div>
+
+                            <div class="col-lg-12 row flex-column">
+                                <label for="class" class="form-label">Sélectionner le departement</label>
+                                <select name="class" th:field="*{departement}" id="class" class="form-select" required>
+                                    <option value=102752>Direction</option>
+                                    <option value=102753>Scolarité</option>
+                                    <option value=102754>Pedagogie</option>
+                                    <option value=102755>Ingenieurs Supports</option>
+                                    <option value=103102>Administration</option>
+                                    <option value=157467>Secretariat</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-12 row flex-column">
+                                <label for="dept1" class="form-label">Sélectionner le type de votre demande</label>
+                                <select name="dept1"  id="dept1" class="form-select" required>
+                                    <option value="">Relevé de notes</option>
+                                    <option value="">Carte d'étudiants</option>
+                                    <option value="">PV</option>
+                                    <option value="">Recu de paiement</option>
+                                    <option value="">Demande du kit arduino</option>
+                                    <option value="">Demande d'une box</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-12 row flex-column">
+                                <label for="intitule" class="form-label">Joindre un ou plusieurs fichier(s)</label>
+                                <input type="file" th:field="*{piecejointe}" name="matricule" id="intitule" class="form-control" multiple required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <button type="submit" class="btn btn-primary">Créer</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ======= Footer ======= -->
+        <footer id="footer" class="footer">
+            <div class="copyright">
+                &copy; Copyright <strong><span>Université Saint Jean</span></strong>. Tous droits réservés
+            </div>
+            <div class="credits">
+                Designed by Groupe 11 INGE 3 ISI
+            </div>
+        </footer><!-- End Footer -->
+
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+        <!-- Vendor JS Files -->
+        <script src="/vendor/apexcharts/apexcharts.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/vendor/chart.js/chart.min.js"></script>
+        <script src="/vendor/echarts/echarts.min.js"></script>
+        <script src="/vendor/quill/quill.min.js"></script>
+        <script src="/vendor/simple-datatables/simple-datatables.js"></script>
+        <script src="/vendor/tinymce/tinymce.min.js"></script>
+        <script src="/vendor/php-email-form/validate.js"></script>
+
+        <!-- Template Main JS File -->
+        <script src="/js/main.js"></script>
+
+    </body>
+</html>
